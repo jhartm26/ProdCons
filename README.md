@@ -50,5 +50,8 @@ This project is an implementation of the producer consumer problem using semapho
 Note: This could vary
 
 ```
+x-special/nautilus-clipboard
+copy
+file:///home/hartm/Pictures/ExampleOutput.png
 
 ```

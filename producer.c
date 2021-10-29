@@ -18,7 +18,7 @@ int main() {
     sem_t* mutex = sem_open("mutex", O_CREAT, 0666, 1); //Semaphores opened
 
 
-    int loop = 20;
+    int loop = 10;
     printf("\nProducer ready to create items for the consumer.\n");
 
     for(int i = 0; i < loop; ++i) {
@@ -40,7 +40,6 @@ int main() {
     sem_close(fill);
     sem_close(empty);
     sem_close(mutex);
-
     sem_unlink("fill");
     sem_unlink("empty");
     sem_unlink("mutex"); //Semaphores cleaned up
@@ -50,6 +49,5 @@ int main() {
     shm_unlink("table"); //Shared memory cleaned up
 
     printf("Producer finished!\n");
-    exit(0);
     return(0);
 }
