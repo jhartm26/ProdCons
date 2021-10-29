@@ -49,4 +49,5 @@ This project is an implementation of the producer consumer problem using semapho
 ### Example Output
 Note: This could vary
 
+![ExampleOutput](https://user-images.githubusercontent.com/90359108/139364242-21476c10-9e37-457a-a6c1-3c1562c1445a.png)
 
