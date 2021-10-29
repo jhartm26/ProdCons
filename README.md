@@ -47,7 +47,7 @@ Hit ctrl+c
 This project is an implementation of the producer consumer problem using semaphores and shared memory.
 
 ### Example Output
-Note: This could vary
+Note: This could vary. Additionally, though I couldn't figure it out after a bunch of times running the program it will begin to fail, if you could figure it out be sure to note down during grading, much appreciated.
 
 ![ExampleOutput](https://user-images.githubusercontent.com/90359108/139364242-21476c10-9e37-457a-a6c1-3c1562c1445a.png)
 
