@@ -11,27 +11,27 @@
 int main() {
     int tbl = shm_open("table", O_CREAT | O_RDWR, 0666);
     ftruncate(tbl,sizeof(int));
-    int* table = mmap(0, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, tbl, 0);
+    int* table = mmap(0, sizeof(int), PROT_READ | PROT_WRITE, MAP_SHARED, tbl, 0); //Shared memory table created
 
     sem_t* fill = sem_open("fill", O_CREAT, 0666, 0);
     sem_t* empty = sem_open("empty", O_CREAT, 0666, 2);
-    sem_t* mutex = sem_open("mutex", O_CREAT, 0666, 1);
+    sem_t* mutex = sem_open("mutex", O_CREAT, 0666, 1); //Semaphores opened
 
 
     int loop = 20;
-    printf("\nProducer ready to create %d items.\n", loop);
+    printf("\nProducer ready to create items for the consumer.\n");
 
-    for(int i = 1; i < loop; ++i) {
+    for(int i = 0; i < loop; ++i) {
         sem_wait(empty);
 
         int ms = rand() % 2 + 1;
         sleep(ms);
 
         sem_wait(mutex);
-        ++(*table);
+        ++(*table); //Item produced in table
         sem_post(mutex);
 
-        printf("Item produced, there are now %d item(s) in the table.\n", *table);
+        printf("Item Produced, there are now %d item(s) in the table.\n", *table);
 
         sem_post(fill);
     }
@@ -43,12 +43,13 @@ int main() {
 
     sem_unlink("fill");
     sem_unlink("empty");
-    sem_unlink("mutex");
+    sem_unlink("mutex"); //Semaphores cleaned up
 
     munmap(table, sizeof(int));
     close(tbl);
-    shm_unlink("table");
+    shm_unlink("table"); //Shared memory cleaned up
 
-    printf("Producer cleaned up!\n");
-    return 0;
+    printf("Producer finished!\n");
+    exit(0);
+    return(0);
 }
